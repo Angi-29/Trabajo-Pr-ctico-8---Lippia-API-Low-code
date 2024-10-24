@@ -1,0 +1,8 @@
+{
+  "name": "full prueba4",
+  "billable": true,
+  "hourlyRate": {
+    "amount": 15000,
+    "public": true
+  }
+}

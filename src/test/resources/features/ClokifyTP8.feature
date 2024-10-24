@@ -6,7 +6,7 @@ Feature: Clockify Project
     * define idWorkSpace = 66fc4bdfabb3a15f171f15ca
 
 
-  @createProject @createProjectRequiredParameter
+  @createProject @createProjectRequiredParameter @ej1
   Scenario Outline: Create a new project in workspace
     Given endpoint /v1/workspaces/{{idWorkSpace}}/projects
     And header Content-Type = application/json
@@ -18,15 +18,15 @@ Feature: Clockify Project
     * define projectId = $.id
     Examples:
       | projectName |
-      | prueba 66 |
+      | Paso9 |
 
-  @getProjectById
+  @getProjectById @ej2
   Scenario: getProjectById
     Given endpoint /v1/workspaces/{{idWorkSpace}}/projects/6719620a4800084f063360ef
     When execute method GET
     Then the status code should be 200
 
-  @editProject
+  @editProject @ej3
   Scenario Outline: editProject
     Given call ClokifyTP8.feature@createProject
     And endpoint /v1/workspaces/{{idWorkSpace}}/projects/{{projectId}}
@@ -40,7 +40,7 @@ Feature: Clockify Project
       | editName |
       | edit projetc 2|
 
-  @happyPath @createProjectFullParams
+  @happyPath @createProjectFullParams @ej4
   Scenario: createProjectWithFullParameters
     Given endpoint /v1/workspaces/{{idWorkSpace}}/projects
     And header Content-Type = application/json
@@ -52,7 +52,7 @@ Feature: Clockify Project
     And response should be $.public = true
 
 
-  @createProjectWithSomeOptionalParameters
+  @createProjectWithSomeOptionalParameters @ej4
   Scenario: createProjectWithSomeOptionalParameters
     Given call Clockify.feature@GetWorkspaceInfo
     And endpoint /v1/workspaces/{{idWorkSpace}}/projects
@@ -64,7 +64,7 @@ Feature: Clockify Project
     And response should be $.public = true
 
 
-  @createProjectWithoutName @parameterMandatory
+  @createProjectWithoutName @parameterMandatory @ej4
   Scenario: createProjectWithoutName
     Given endpoint /v1/workspaces/{{idWorkSpace}}/projects
     And header Content-Type = application/json
@@ -72,7 +72,7 @@ Feature: Clockify Project
     When execute method POST
     Then the status code should be 400
 
-  @createProjectInvalidParam
+  @createProjectInvalidParam @ej4
   Scenario: createProjectWithInvalidParameter
     Given endpoint /v1/workspaces/{{idWorkSpace}}/projects
     And header Content-Type = application/json
@@ -81,7 +81,7 @@ Feature: Clockify Project
     Then the status code should be 400
 
 
-  @pruebaNoAutorizado
+  @pruebaNoAutorizado @ej5
   Scenario Outline: createProjectWithoutAuthorization
     Given base url https://api.clockify.me/api
     And endpoint /v1/workspaces/{{idWorkSpace}}/projects
@@ -98,7 +98,7 @@ Feature: Clockify Project
       | prueba 1955 |
 
 
-  @pruebaNoEncontrada @getProjectWithInvalidId
+  @pruebaNoEncontrada @getProjectWithInvalidId @ej6
   Scenario: getProjectWithInvalidId
     Given endpoint /v1/workspaces/{{idWorkSpace}}/project/5b641568b07987035750505e
     When execute method GET
@@ -106,7 +106,7 @@ Feature: Clockify Project
     And response should be $.message = "No static resource v1/workspaces/66fc4bdfabb3a15f171f15ca/project/5b641568b07987035750505e."
     And response should be $.code = 3000
 
-  @createProjectInvalidParam @error400 @prueba1
+  @createProjectInvalidParam @error400 @ej7
   Scenario: createProjectWithInvalidParameter
     Given endpoint /v1/workspaces/{{idWorkSpace}}/projects
     And header Content-Type = application/json

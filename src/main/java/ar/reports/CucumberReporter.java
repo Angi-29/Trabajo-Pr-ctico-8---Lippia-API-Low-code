@@ -18,6 +18,6 @@ public class CucumberReporter extends ExtentCucumberGenericAdapter {
 
     @Override
     public Boolean isScreenshotDisable() {
-        return true;
+        return Boolean.TRUE;
     }
 }

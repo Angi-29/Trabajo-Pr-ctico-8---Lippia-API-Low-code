@@ -1,5 +1,5 @@
 {
-  "name": "full prueba4",
+  "name": "{{name}}",
   "billable": true,
   "hourlyRate": {
     "amount": 15000,

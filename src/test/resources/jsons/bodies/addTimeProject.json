@@ -1,7 +1,7 @@
 {
-  "start": "2024-10-26T09:00:00Z",
-  "end": "2024-10-26T11:00:00Z",
-  "description": "Descripción del trabajo realizado",
+  "start": "{{start}}",
+  "end": "{{end}}",
+  "description": "{{description}}",
   "projectId": "{{projectId}}",
   "billable": true
 }

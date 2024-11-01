@@ -14,4 +14,9 @@ public class ProjectSteps {
         // Usa stepsInCommon en lugar de herencia
         stepsInCommon.setVariable(key, valorAleatorio);
     }
+
+    @And("valores recuperados (\\S+),(\\S+)")
+    public void valoresRecuperados(String arg0, String arg1) {
+        System.out.println("Valor1: "+arg0+" Valor2:"+arg1);
+    }
 }

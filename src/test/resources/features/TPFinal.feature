@@ -81,7 +81,7 @@ Feature: Proyecto Final - ABM de horarios
 
 
   @editTimeEntry @tpf @tpf3
-  Scenario Outline: Editar un campo de algún registro de hora
+  Scenario Outline: Editar un campo de algun registro de hora
     Given call TPFinal.feature@addTimeEntry
     And endpoint /v1/workspaces/{{idWorkSpace}}/time-entries/{{idTime}}
     * define description = "<description>"

@@ -1,4 +1,5 @@
-Feature: Proyecto Final - ABM de horarios
+
+Feature: Final Project - ABM of schedules
 
   Background:
     And base url https://api.clockify.me/api
@@ -28,7 +29,7 @@ Feature: Proyecto Final - ABM de horarios
     * define projectId = $.id
 
   @addTimeProjectWorkSpace
-  Scenario: Agregar horas a un proyecto
+  Scenario: Add hours to a project
     Given call TPFinal.feature@addProjectWorkSpace
     Given endpoint /v1/workspaces/{{idWorkSpace}}/time-entries
     * define description = "Agregar horas a un proyecto"
@@ -38,11 +39,11 @@ Feature: Proyecto Final - ABM de horarios
     And header Content-Type = application/json
     When execute method POST
     Then the status code should be 201
-    #And print response
+
   ##############################################################################
 
-  @tpf1 @tpf
-  Scenario: Consulta un projecto de workspaces
+  @getProject @tpf1 @tpf
+  Scenario: Get of a project in a workspace
     Given call TPFinal.feature@addTimeProjectWorkSpace
     Given endpoint /v1/workspaces/{{idWorkSpace}}/projects/{{projectId}}
     And header Content-Type = application/json
@@ -53,14 +54,12 @@ Feature: Proyecto Final - ABM de horarios
     And response should be duration = "PT2H"
 
   @addTimeEntry @tpf @tpf2
-  Scenario Outline: Agregar horas a un proyecto creado
+  Scenario Outline: Add hours to a created project
     Given call TPFinal.feature@addTimeProjectWorkSpace
     Given endpoint /v1/workspaces/{{idWorkSpace}}/time-entries
-
     * define description = "<description>"
     * define start = "<start>"
     * define end = "<end>"
-
     And body jsons/bodies/addTimeProject.json
     And header Content-Type = application/json
     When execute method POST
@@ -81,7 +80,7 @@ Feature: Proyecto Final - ABM de horarios
 
 
   @editTimeEntry @tpf @tpf3
-  Scenario Outline: Editar un campo de algun registro de hora
+  Scenario Outline: Edit a field of some time stamp
     Given call TPFinal.feature@addTimeEntry
     And endpoint /v1/workspaces/{{idWorkSpace}}/time-entries/{{idTime}}
     * define description = "<description>"
@@ -97,7 +96,7 @@ Feature: Proyecto Final - ABM de horarios
       | Editar un campo de algun registro de hora |
 
   @deleteTimeEntry @tpf @tpf4
-  Scenario: Eliminar hora registrada
+  Scenario:Delete registered time
     Given call TPFinal.feature@addTimeEntry
     And endpoint /v1/workspaces/{{idWorkSpace}}/time-entries/{{idTime}}
     And header Content-Type = application/json
